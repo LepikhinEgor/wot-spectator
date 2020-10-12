@@ -1,6 +1,6 @@
 package com.egorl.battlespy.services.impl;
 
-import com.egorl.battlespy.domain.dto.BattleInfoDto;
+import com.egorl.battlespy.domain.dto.BattleResponseDto;
 import com.egorl.battlespy.domain.entities.TankLocation;
 import com.egorl.battlespy.services.interfaces.BattleInfoService;
 import org.slf4j.Logger;
@@ -17,23 +17,24 @@ public class BattleInfoServiceFake implements BattleInfoService {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public Mono<BattleInfoDto> getBattleInfo(String battleKey, Integer teamNumber) {
+    public Mono<BattleResponseDto> getBattle(String battleKey, Integer teamNumber) {
         return Mono.just(buildDto(battleKey));
     }
 
     @Override
-    public void saveBattleInfo(BattleInfoDto dto) {
+    public Mono<Void> updateBattle(BattleResponseDto dto) {
         logger.info(dto.toString());
+        return Mono.empty();
     }
 
-    private BattleInfoDto buildDto(String battleKey) {
-        BattleInfoDto battleInfoDto = new BattleInfoDto();
+    private BattleResponseDto buildDto(String battleKey) {
+        BattleResponseDto battleResponseDto = new BattleResponseDto();
 
-        battleInfoDto.setBattleKey(battleKey);
-        battleInfoDto.setMap("Cliff");
-        battleInfoDto.setEnemiesLocation(generateEnemiesLocation());
+        battleResponseDto.setBattleKey(battleKey);
+        battleResponseDto.setMap("Cliff");
+        battleResponseDto.setEnemiesLocation(generateEnemiesLocation());
 
-        return battleInfoDto;
+        return battleResponseDto;
     }
 
     private List<TankLocation> generateEnemiesLocation() {

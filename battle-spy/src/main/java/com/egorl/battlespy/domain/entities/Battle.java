@@ -1,6 +1,7 @@
 package com.egorl.battlespy.domain.entities;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -10,7 +11,7 @@ public class Battle {
 
     @Id
     @GeneratedValue
-    private UUID battleId;
+    private UUID id;
 
     @Column(name = "map")
     private String map;
@@ -18,12 +19,12 @@ public class Battle {
     @Column(name = "author")
     private String author;
 
-    public UUID getBattleId() {
-        return battleId;
+    public UUID getId() {
+        return id;
     }
 
-    public void setBattleId(UUID battleId) {
-        this.battleId = battleId;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getMap() {
@@ -47,20 +48,20 @@ public class Battle {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Battle battle = (Battle) o;
-        return Objects.equals(battleId, battle.battleId) &&
+        return Objects.equals(id, battle.id) &&
                 Objects.equals(map, battle.map) &&
                 Objects.equals(author, battle.author);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(battleId, map, author);
+        return Objects.hash(id, map, author);
     }
 
     @Override
     public String toString() {
         return "Battle{" +
-                "battleId=" + battleId +
+                "id=" + id +
                 ", map='" + map + '\'' +
                 ", author='" + author + '\'' +
                 '}';

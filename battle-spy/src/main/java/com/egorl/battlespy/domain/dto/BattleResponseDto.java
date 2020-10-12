@@ -5,7 +5,7 @@ import com.egorl.battlespy.domain.entities.TankLocation;
 import java.util.List;
 import java.util.Objects;
 
-public class BattleInfoDto {
+public class BattleDto {
 
     private String map;
 
@@ -41,7 +41,7 @@ public class BattleInfoDto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BattleInfoDto that = (BattleInfoDto) o;
+        BattleDto that = (BattleDto) o;
         return Objects.equals(map, that.map) &&
                 Objects.equals(battleKey, that.battleKey) &&
                 Objects.equals(enemiesLocation, that.enemiesLocation);

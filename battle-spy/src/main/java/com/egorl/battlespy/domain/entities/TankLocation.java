@@ -8,11 +8,18 @@ import java.util.Objects;
 @Table(name = "tank_location")
 public class TankLocation {
 
+    @Id
+    @GeneratedValue
+    private Long id;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "battle_id")
     private Battle battle;
 
-    @Column(name = "date")
+    @Column(name = "team")
+    private Integer team;
+
+    @Column(name = "timing")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
@@ -40,6 +47,14 @@ public class TankLocation {
 
     public void setBattle(Battle battle) {
         this.battle = battle;
+    }
+
+    public Integer getTeam() {
+        return team;
+    }
+
+    public void setTeam(Integer team) {
+        this.team = team;
     }
 
     public Date getDate() {
@@ -104,6 +119,7 @@ public class TankLocation {
         if (o == null || getClass() != o.getClass()) return false;
         TankLocation that = (TankLocation) o;
         return Objects.equals(battle, that.battle) &&
+                Objects.equals(team, that.team) &&
                 Objects.equals(date, that.date) &&
                 Objects.equals(tankId, that.tankId) &&
                 Objects.equals(hp, that.hp) &&
@@ -115,13 +131,14 @@ public class TankLocation {
 
     @Override
     public int hashCode() {
-        return Objects.hash(battle, date, tankId, hp, locationX, locationY, hullAngle, turretAngle);
+        return Objects.hash(battle, team, date, tankId, hp, locationX, locationY, hullAngle, turretAngle);
     }
 
     @Override
     public String toString() {
         return "TankLocation{" +
-                "battleInfo=" + battle +
+                "battle=" + battle +
+                ", team=" + team +
                 ", date=" + date +
                 ", tankId='" + tankId + '\'' +
                 ", hp=" + hp +

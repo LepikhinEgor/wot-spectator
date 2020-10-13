@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.UUID;
 
 @Service
@@ -42,9 +44,23 @@ public class BattleInfoServiceImpl implements BattleInfoService {
     }
 
     @Override
+    @Transactional
     public Mono<Void> updateBattle(BattleResponseDto dto) {
         return Mono.just(buildBattle(dto))
-                .doOnNext(battle -> battleRepository.save(battle))
+                .flatMap(battle -> Mono.fromCallable(() ->battleRepository.save(battle)))
+                .doOnNext(battle ->  {
+                    dto.getEnemiesLocation()
+                            .forEach(tankLocation -> {
+                                tankLocation.setBattle(battle);
+                                tankLocation.setTiming(new Date());
+                                tankLocation.setTeam(1);
+                                tankLocation.setHullAngle(1D);
+                                tankLocation.setTurretAngle(1D);
+                                tankLocation.setLocationX(1D);
+                                tankLocation.setLocationY(1D);
+                            });
+                    tankLocationRepository.saveAll(dto.getEnemiesLocation());
+                })
                 .then();
     }
 

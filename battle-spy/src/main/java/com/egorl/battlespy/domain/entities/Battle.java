@@ -1,7 +1,9 @@
 package com.egorl.battlespy.domain.entities;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -10,7 +12,6 @@ import java.util.UUID;
 public class Battle {
 
     @Id
-    @GeneratedValue
     private UUID id;
 
     @Column(name = "map")

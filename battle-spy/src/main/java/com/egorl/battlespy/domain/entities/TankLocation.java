@@ -1,7 +1,7 @@
 package com.egorl.battlespy.domain.entities;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -9,7 +9,8 @@ import java.util.Objects;
 public class TankLocation {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "location_id_seq_gen")
+    @SequenceGenerator(name = "location_id_seq_gen", sequenceName = "location_id_seq" , initialValue = 1, allocationSize =1)
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -21,7 +22,7 @@ public class TankLocation {
 
     @Column(name = "timing")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private Date timing;
 
     @Column(name = "tank_id")
     private String tankId;
@@ -57,12 +58,12 @@ public class TankLocation {
         this.team = team;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getTiming() {
+        return timing;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTiming(Date date) {
+        this.timing = date;
     }
 
     public String getTankId() {
@@ -120,7 +121,7 @@ public class TankLocation {
         TankLocation that = (TankLocation) o;
         return Objects.equals(battle, that.battle) &&
                 Objects.equals(team, that.team) &&
-                Objects.equals(date, that.date) &&
+                Objects.equals(timing, that.timing) &&
                 Objects.equals(tankId, that.tankId) &&
                 Objects.equals(hp, that.hp) &&
                 Objects.equals(locationX, that.locationX) &&
@@ -131,7 +132,7 @@ public class TankLocation {
 
     @Override
     public int hashCode() {
-        return Objects.hash(battle, team, date, tankId, hp, locationX, locationY, hullAngle, turretAngle);
+        return Objects.hash(battle, team, timing, tankId, hp, locationX, locationY, hullAngle, turretAngle);
     }
 
     @Override
@@ -139,7 +140,7 @@ public class TankLocation {
         return "TankLocation{" +
                 "battle=" + battle +
                 ", team=" + team +
-                ", date=" + date +
+                ", date=" + timing +
                 ", tankId='" + tankId + '\'' +
                 ", hp=" + hp +
                 ", locationX=" + locationX +

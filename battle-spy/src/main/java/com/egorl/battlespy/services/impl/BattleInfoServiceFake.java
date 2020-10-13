@@ -1,6 +1,7 @@
 package com.egorl.battlespy.services.impl;
 
-import com.egorl.battlespy.domain.dto.BattleResponseDto;
+import com.egorl.battlespy.domain.dto.BattleDto;
+import com.egorl.battlespy.domain.dto.TankLocationDto;
 import com.egorl.battlespy.domain.entities.TankLocation;
 import com.egorl.battlespy.services.interfaces.BattleInfoService;
 import org.slf4j.Logger;
@@ -17,30 +18,30 @@ public class BattleInfoServiceFake implements BattleInfoService {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public Mono<BattleResponseDto> getBattle(String battleKey, Integer teamNumber) {
+    public Mono<BattleDto> getBattle(String battleKey, Integer teamNumber) {
         return Mono.just(buildDto(battleKey));
     }
 
     @Override
-    public Mono<Void> updateBattle(BattleResponseDto dto) {
+    public Mono<Void> updateBattle(BattleDto dto) {
         logger.info(dto.toString());
         return Mono.empty();
     }
 
-    private BattleResponseDto buildDto(String battleKey) {
-        BattleResponseDto battleResponseDto = new BattleResponseDto();
+    private BattleDto buildDto(String battleKey) {
+        BattleDto battleDto = new BattleDto();
 
-        battleResponseDto.setBattleKey(battleKey);
-        battleResponseDto.setMap("Cliff");
-        battleResponseDto.setEnemiesLocation(generateEnemiesLocation());
+        battleDto.setBattleKey(battleKey);
+        battleDto.setMap("Cliff");
+        battleDto.setEnemiesLocation(generateEnemiesLocation());
 
-        return battleResponseDto;
+        return battleDto;
     }
 
-    private List<TankLocation> generateEnemiesLocation() {
-        List<TankLocation> enemiesLocation = new ArrayList<>();
+    private List<TankLocationDto> generateEnemiesLocation() {
+        List<TankLocationDto> enemiesLocation = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
-            TankLocation tankLocation = new TankLocation();
+            TankLocationDto tankLocation = new TankLocationDto();
 
             tankLocation.setLocationX(Math.random() * 1000);
             tankLocation.setLocationY(Math.random() * 1000);

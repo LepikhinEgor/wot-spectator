@@ -1,11 +1,11 @@
 package com.egorl.battlespy.services.interfaces;
 
-import com.egorl.battlespy.domain.dto.BattleResponseDto;
+import com.egorl.battlespy.domain.dto.BattleDto;
 import reactor.core.publisher.Mono;
 
 public interface BattleInfoService {
 
-    Mono<BattleResponseDto> getBattle(String battle, Integer teamNumber);
+    Mono<BattleDto> getBattle(String battle, Integer teamNumber);
 
-    Mono<Void> updateBattle(BattleResponseDto dto);
+    Mono<Void> updateBattle(BattleDto dto);
 }

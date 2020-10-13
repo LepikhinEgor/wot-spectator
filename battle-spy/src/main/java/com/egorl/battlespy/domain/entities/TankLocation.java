@@ -20,6 +20,9 @@ public class TankLocation {
     @Column(name = "team")
     private Integer team;
 
+    @Column(name = "nickname")
+    private String nickname;
+
     @Column(name = "timing")
     @Temporal(TemporalType.TIMESTAMP)
     private Date timing;
@@ -42,6 +45,14 @@ public class TankLocation {
     @Column(name = "turret_angle")
     private Double turretAngle;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Battle getBattle() {
         return battle;
     }
@@ -58,12 +69,20 @@ public class TankLocation {
         this.team = team;
     }
 
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
     public Date getTiming() {
         return timing;
     }
 
-    public void setTiming(Date date) {
-        this.timing = date;
+    public void setTiming(Date timing) {
+        this.timing = timing;
     }
 
     public String getTankId() {
@@ -119,8 +138,10 @@ public class TankLocation {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TankLocation that = (TankLocation) o;
-        return Objects.equals(battle, that.battle) &&
+        return Objects.equals(id, that.id) &&
+                Objects.equals(battle, that.battle) &&
                 Objects.equals(team, that.team) &&
+                Objects.equals(nickname, that.nickname) &&
                 Objects.equals(timing, that.timing) &&
                 Objects.equals(tankId, that.tankId) &&
                 Objects.equals(hp, that.hp) &&
@@ -132,15 +153,17 @@ public class TankLocation {
 
     @Override
     public int hashCode() {
-        return Objects.hash(battle, team, timing, tankId, hp, locationX, locationY, hullAngle, turretAngle);
+        return Objects.hash(id, battle, team, nickname, timing, tankId, hp, locationX, locationY, hullAngle, turretAngle);
     }
 
     @Override
     public String toString() {
         return "TankLocation{" +
-                "battle=" + battle +
+                "id=" + id +
+                ", battle=" + battle +
                 ", team=" + team +
-                ", date=" + timing +
+                ", nickname='" + nickname + '\'' +
+                ", timing=" + timing +
                 ", tankId='" + tankId + '\'' +
                 ", hp=" + hp +
                 ", locationX=" + locationX +

@@ -1,17 +1,21 @@
 package com.egorl.battlespy.domain.dto;
 
 import com.egorl.battlespy.domain.entities.TankLocation;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 import java.util.Objects;
 
-public class BattleResponseDto {
+public class BattleDto {
 
+    @JsonProperty("map")
     private String map;
 
+    @JsonProperty("battle_key")
     private String battleKey;
 
-    List<TankLocation> enemiesLocation;
+    @JsonProperty("enemies_location")
+    List<TankLocationDto> enemiesLocation;
 
     public String getMap() {
         return map;
@@ -29,11 +33,11 @@ public class BattleResponseDto {
         this.battleKey = battleKey;
     }
 
-    public List<TankLocation> getEnemiesLocation() {
+    public List<TankLocationDto> getEnemiesLocation() {
         return enemiesLocation;
     }
 
-    public void setEnemiesLocation(List<TankLocation> enemiesLocation) {
+    public void setEnemiesLocation(List<TankLocationDto> enemiesLocation) {
         this.enemiesLocation = enemiesLocation;
     }
 
@@ -41,10 +45,10 @@ public class BattleResponseDto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BattleResponseDto that = (BattleResponseDto) o;
-        return Objects.equals(map, that.map) &&
-                Objects.equals(battleKey, that.battleKey) &&
-                Objects.equals(enemiesLocation, that.enemiesLocation);
+        BattleDto battleDto = (BattleDto) o;
+        return Objects.equals(map, battleDto.map) &&
+                Objects.equals(battleKey, battleDto.battleKey) &&
+                Objects.equals(enemiesLocation, battleDto.enemiesLocation);
     }
 
     @Override
@@ -54,7 +58,7 @@ public class BattleResponseDto {
 
     @Override
     public String toString() {
-        return "BattleInfoDto{" +
+        return "BattleDto{" +
                 "map='" + map + '\'' +
                 ", battleKey='" + battleKey + '\'' +
                 ", enemiesLocation=" + enemiesLocation +

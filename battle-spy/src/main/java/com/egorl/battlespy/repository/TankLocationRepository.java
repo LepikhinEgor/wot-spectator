@@ -9,4 +9,5 @@ import java.util.List;
 public interface TankLocationRepository extends CrudRepository<TankLocation, Long> {
 
     List<TankLocation> findByBattleAndTeam(Battle battle, Integer team);
+
 }

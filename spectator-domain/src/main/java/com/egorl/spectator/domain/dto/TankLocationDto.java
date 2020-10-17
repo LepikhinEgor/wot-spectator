@@ -1,4 +1,4 @@
-package com.egorl.battlespy.domain.dto;
+package com.egorl.spectator.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

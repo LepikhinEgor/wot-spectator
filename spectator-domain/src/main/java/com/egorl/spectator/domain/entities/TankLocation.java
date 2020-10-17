@@ -1,4 +1,4 @@
-package com.egorl.battlespy.domain.entities;
+package com.egorl.spectator.domain.entities;
 
 import javax.persistence.*;
 import java.util.Date;

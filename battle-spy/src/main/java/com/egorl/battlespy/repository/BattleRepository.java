@@ -1,6 +1,6 @@
 package com.egorl.battlespy.repository;
 
-import com.egorl.battlespy.domain.entities.Battle;
+import com.egorl.spectator.domain.entities.Battle;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.UUID;

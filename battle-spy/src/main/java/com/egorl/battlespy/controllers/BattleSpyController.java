@@ -1,6 +1,6 @@
 package com.egorl.battlespy.controllers;
 
-import com.egorl.battlespy.domain.dto.BattleDto;
+import com.egorl.spectator.domain.dto.BattleDto;
 import com.egorl.battlespy.services.interfaces.BattleInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

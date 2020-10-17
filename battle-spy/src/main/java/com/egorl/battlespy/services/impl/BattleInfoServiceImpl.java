@@ -1,9 +1,9 @@
 package com.egorl.battlespy.services.impl;
 
-import com.egorl.battlespy.domain.dto.BattleDto;
-import com.egorl.battlespy.domain.dto.TankLocationDto;
-import com.egorl.battlespy.domain.entities.Battle;
-import com.egorl.battlespy.domain.entities.TankLocation;
+import com.egorl.spectator.domain.dto.BattleDto;
+import com.egorl.spectator.domain.dto.TankLocationDto;
+import com.egorl.spectator.domain.entities.Battle;
+import com.egorl.spectator.domain.entities.TankLocation;
 import com.egorl.battlespy.repository.BattleRepository;
 import com.egorl.battlespy.repository.TankLocationRepository;
 import com.egorl.battlespy.services.interfaces.BattleInfoService;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;

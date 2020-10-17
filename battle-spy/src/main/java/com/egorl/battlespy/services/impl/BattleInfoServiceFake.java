@@ -1,8 +1,7 @@
 package com.egorl.battlespy.services.impl;
 
-import com.egorl.battlespy.domain.dto.BattleDto;
-import com.egorl.battlespy.domain.dto.TankLocationDto;
-import com.egorl.battlespy.domain.entities.TankLocation;
+import com.egorl.spectator.domain.dto.BattleDto;
+import com.egorl.spectator.domain.dto.TankLocationDto;
 import com.egorl.battlespy.services.interfaces.BattleInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

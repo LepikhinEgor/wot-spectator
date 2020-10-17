@@ -1,6 +1,6 @@
 package com.egorl.battlespy.services.interfaces;
 
-import com.egorl.battlespy.domain.dto.BattleDto;
+import com.egorl.spectator.domain.dto.BattleDto;
 import reactor.core.publisher.Mono;
 
 public interface BattleInfoService {

@@ -1,7 +1,7 @@
 package com.egorl.battlespy.controllers;
 
 import com.egorl.spectator.domain.dto.BattleDto;
-import com.egorl.battlespy.services.interfaces.BattleInfoService;
+import com.egorl.battlespy.services.interfaces.BattleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -10,21 +10,21 @@ import reactor.core.publisher.Mono;
 @RestController
 public class BattleSpyController {
 
-    private BattleInfoService battleInfoService;
+    private BattleService battleService;
 
     @Autowired
-    public void setBattleInfoService(@Qualifier("battleInfoServiceImpl") BattleInfoService battleInfoService) {
-        this.battleInfoService = battleInfoService;
+    public void setBattleService(@Qualifier("battleServiceImpl") BattleService battleService) {
+        this.battleService = battleService;
     }
 
     @GetMapping("/battle/info")
     public Mono<BattleDto> getBattleInfo(@RequestParam(name = "battleId", required = true) String battleId,
                                          @RequestParam(name = "team", required = true) Integer team) {
-        return battleInfoService.getBattle(battleId, team);
+        return battleService.getBattle(battleId, team);
     }
 
     @PostMapping("/battle/info")
     public Mono<Void> saveBattleInfo(@RequestBody BattleDto battleDto) {
-        return battleInfoService.updateBattle(battleDto);
+        return battleService.updateBattle(battleDto);
     }
 }

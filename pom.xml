@@ -23,5 +23,6 @@
     <modules>
         <module>spectator-domain</module>
         <module>battle-spy</module>
+        <module>battle-generator</module>
     </modules>
 </project>

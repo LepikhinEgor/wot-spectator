@@ -1,0 +1,143 @@
+{
+  "status": "ok",
+  "meta": {
+    "count": 45
+  },
+  "data": {
+    "05_prohorovka": {
+      "arena_id": "05_prohorovka"
+    },
+    "59_asia_great_wall": {
+      "arena_id": "59_asia_great_wall"
+    },
+    "36_fishing_bay": {
+      "arena_id": "36_fishing_bay"
+    },
+    "114_czech": {
+      "arena_id": "114_czech"
+    },
+    "11_murovanka": {
+      "arena_id": "11_murovanka"
+    },
+    "90_minsk": {
+      "arena_id": "90_minsk"
+    },
+    "35_steppes": {
+      "arena_id": "35_steppes"
+    },
+    "17_munchen": {
+      "arena_id": "17_munchen"
+    },
+    "31_airfield": {
+      "arena_id": "31_airfield"
+    },
+    "19_monastery": {
+      "arena_id": "19_monastery"
+    },
+    "217_er_alaska": {
+      "arena_id": "217_er_alaska"
+    },
+    "10_hills": {
+      "arena_id": "10_hills"
+    },
+    "222_er_clime": {
+      "arena_id": "222_er_clime"
+    },
+    "250_br_battle_city2-1": {
+      "arena_id": "250_br_battle_city2-1"
+    },
+    "28_desert": {
+      "arena_id": "28_desert"
+    },
+    "112_eiffel_tower_ctf": {
+      "arena_id": "112_eiffel_tower_ctf"
+    },
+    "101_dday": {
+      "arena_id": "101_dday"
+    },
+    "03_campania_big": {
+      "arena_id": "03_campania_big"
+    },
+    "212_epic_random_valley": {
+      "arena_id": "212_epic_random_valley"
+    },
+    "60_asia_miao": {
+      "arena_id": "60_asia_miao"
+    },
+    "01_karelia": {
+      "arena_id": "01_karelia"
+    },
+    "29_el_hallouf": {
+      "arena_id": "29_el_hallouf"
+    },
+    "14_siegfried_line": {
+      "arena_id": "14_siegfried_line"
+    },
+    "13_erlenberg": {
+      "arena_id": "13_erlenberg"
+    },
+    "83_kharkiv": {
+      "arena_id": "83_kharkiv"
+    },
+    "04_himmelsdorf": {
+      "arena_id": "04_himmelsdorf"
+    },
+    "99_poland": {
+      "arena_id": "99_poland"
+    },
+    "63_tundra": {
+      "arena_id": "63_tundra"
+    },
+    "47_canada_a": {
+      "arena_id": "47_canada_a"
+    },
+    "251_br_battle_city3": {
+      "arena_id": "251_br_battle_city3"
+    },
+    "18_cliff": {
+      "arena_id": "18_cliff"
+    },
+    "45_north_america": {
+      "arena_id": "45_north_america"
+    },
+    "105_germany": {
+      "arena_id": "105_germany"
+    },
+    "08_ruinberg": {
+      "arena_id": "08_ruinberg"
+    },
+    "34_redshire": {
+      "arena_id": "34_redshire"
+    },
+    "23_westfeld": {
+      "arena_id": "23_westfeld"
+    },
+    "02_malinovka": {
+      "arena_id": "02_malinovka"
+    },
+    "115_sweden": {
+      "arena_id": "115_sweden"
+    },
+    "37_caucasus": {
+      "arena_id": "37_caucasus"
+    },
+    "06_ensk": {
+      "arena_id": "06_ensk"
+    },
+    "38_mannerheim_line": {
+      "arena_id": "38_mannerheim_line"
+    },
+    "95_lost_city_ctf": {
+      "arena_id": "95_lost_city_ctf"
+    },
+    "07_lakeville": {
+      "arena_id": "07_lakeville"
+    },
+    "33_fjord": {
+      "arena_id": "33_fjord"
+    },
+    "44_north_america": {
+      "arena_id": "44_north_america"
+    }
+  }
+}

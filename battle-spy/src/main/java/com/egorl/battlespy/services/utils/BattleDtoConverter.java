@@ -12,7 +12,7 @@ public class BattleDtoConverter {
     public BattleDto toDto(Battle battle) {
         BattleDto dto = new BattleDto();
 
-        dto.setBattleKey(battle.getId().toString());
+        dto.setBattleId(battle.getId().toString());
         dto.setMap(battle.getMap());
 
         return dto;
@@ -20,7 +20,7 @@ public class BattleDtoConverter {
 
     public Battle fromDto(BattleDto dto) {
         Battle battle = new Battle();
-        battle.setId(UUID.fromString(dto.getBattleKey()));
+        battle.setId(UUID.fromString(dto.getBattleId()));
         battle.setAuthor(null);
         battle.setMap(dto.getMap());
 

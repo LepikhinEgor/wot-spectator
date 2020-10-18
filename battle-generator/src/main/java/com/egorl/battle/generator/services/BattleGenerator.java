@@ -1,5 +1,6 @@
 package com.egorl.battle.generator.services;
 
+import com.egorl.battle.generator.domain.BattleCreationRequest;
 import com.egorl.battle.generator.domain.Point;
 import com.egorl.spectator.domain.dto.BattleDto;
 import com.egorl.spectator.domain.dto.TankLocationDto;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class BattleGenerator {
@@ -22,21 +24,26 @@ public class BattleGenerator {
 
     private static final double RESPAWN_RADIUS = 10;
 
-    public BattleDto generateBattle(String map) {
+    public BattleDto generateBattle(BattleCreationRequest battleCreation) {
         BattleDto battle = new BattleDto();
-        battle.setMap(map);
-        battle.setBattleKey(UUID.randomUUID().toString());
-        battle.set
+        battle.setMap(battleCreation.getMap());
+        battle.setBattleId(battleCreation.getId());
+        battle.setTanksLocation(generateNewLocations(battleCreation.getTeam()));
 
         return battle;
     }
 
+    public BattleDto updateBattle(BattleDto oldBattleDto) {
+        List<TankLocationDto> newLocations = oldBattleDto.getTanksLocation().stream()
+                .peek(dto -> {
+                    Point newPosition = updatePosition(new Point(dto.getLocationX(), dto.getLocationY()));
+                    dto.setLocationX(newPosition.getX());
+                    dto.setLocationY(newPosition.getY());
+                })
+                .collect(Collectors.toList());
+        oldBattleDto.setTanksLocation(newLocations);
 
-    public List<TankLocationDto> updateTankLocations(List<TankLocationDto> oldLocations) {
-        List<TankLocationDto> actualLocations = new ArrayList<>(oldLocations);
-        if (oldLocations.isEmpty())
-//            actualLocations = generateNewLocations() TODO
-
+        return oldBattleDto;
     }
 
     private List<TankLocationDto> generateNewLocations(Integer team) {

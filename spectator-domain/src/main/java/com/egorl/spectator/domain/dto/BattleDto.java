@@ -10,11 +10,14 @@ public class BattleDto {
     @JsonProperty("map")
     private String map;
 
-    @JsonProperty("battle_key")
-    private String battleKey;
+    @JsonProperty("battle_id")
+    private String battleId;
+
+    @JsonProperty("team")
+    private Integer team;
 
     @JsonProperty("enemies_location")
-    List<TankLocationDto> enemiesLocation;
+    private List<TankLocationDto> tanksLocation;
 
     public String getMap() {
         return map;
@@ -24,20 +27,28 @@ public class BattleDto {
         this.map = map;
     }
 
-    public String getBattleKey() {
-        return battleKey;
+    public String getBattleId() {
+        return battleId;
     }
 
-    public void setBattleKey(String battleKey) {
-        this.battleKey = battleKey;
+    public void setBattleId(String battleId) {
+        this.battleId = battleId;
     }
 
-    public List<TankLocationDto> getEnemiesLocation() {
-        return enemiesLocation;
+    public List<TankLocationDto> getTanksLocation() {
+        return tanksLocation;
     }
 
-    public void setEnemiesLocation(List<TankLocationDto> enemiesLocation) {
-        this.enemiesLocation = enemiesLocation;
+    public void setTanksLocation(List<TankLocationDto> tanksLocation) {
+        this.tanksLocation = tanksLocation;
+    }
+
+    public Integer getTeam() {
+        return team;
+    }
+
+    public void setTeam(Integer team) {
+        this.team = team;
     }
 
     @Override
@@ -46,21 +57,23 @@ public class BattleDto {
         if (o == null || getClass() != o.getClass()) return false;
         BattleDto battleDto = (BattleDto) o;
         return Objects.equals(map, battleDto.map) &&
-                Objects.equals(battleKey, battleDto.battleKey) &&
-                Objects.equals(enemiesLocation, battleDto.enemiesLocation);
+                Objects.equals(battleId, battleDto.battleId) &&
+                Objects.equals(team, battleDto.team) &&
+                Objects.equals(tanksLocation, battleDto.tanksLocation);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(map, battleKey, enemiesLocation);
+        return Objects.hash(map, battleId, team, tanksLocation);
     }
 
     @Override
     public String toString() {
         return "BattleDto{" +
                 "map='" + map + '\'' +
-                ", battleKey='" + battleKey + '\'' +
-                ", enemiesLocation=" + enemiesLocation +
+                ", battleId='" + battleId + '\'' +
+                ", team=" + team +
+                ", tanksLocation=" + tanksLocation +
                 '}';
     }
 }

@@ -61,7 +61,7 @@ public class BattleServiceImpl implements BattleService {
                             List<TankLocationDto> locationsDto = tuple.getT2().stream()
                                     .map(tankLocationDtoConverter::toDto)
                                     .collect(Collectors.toList());
-                            dto.setEnemiesLocation(locationsDto);
+                            dto.setTanksLocation(locationsDto);
 
                             return dto;
                         });
@@ -72,7 +72,7 @@ public class BattleServiceImpl implements BattleService {
     public Mono<Void> updateBattle(BattleDto dto) {
         return Mono.just(battleDtoConverter.fromDto(dto))
                 .flatMap(battle -> Mono.fromCallable(() -> battleRepository.save(battle)))
-                .zipWhen(battle -> tankLocationService.getByBattleAndTeam(battle, getTanksTeam(dto.getEnemiesLocation())))
+                .zipWhen(battle -> tankLocationService.getByBattleAndTeam(battle, getTanksTeam(dto.getTanksLocation())))
                 .doOnNext(tuple ->  {
                     List<TankLocation> actualLocations = getActualTanksLocations(dto);
                     List<TankLocation> updatedLocations = updateTankLocations(tuple.getT2(), actualLocations, tuple.getT1());
@@ -83,7 +83,7 @@ public class BattleServiceImpl implements BattleService {
     }
 
     private List<TankLocation> getActualTanksLocations(BattleDto battleDto) {
-        return battleDto.getEnemiesLocation().stream()
+        return battleDto.getTanksLocation().stream()
                 .map(tankLocationDtoConverter::fromDto)
                 .collect(Collectors.toList());
     }

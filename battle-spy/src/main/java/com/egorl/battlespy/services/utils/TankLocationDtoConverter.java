@@ -14,8 +14,9 @@ public class TankLocationDtoConverter {
         dto.setLocationY(tankLocation.getLocationY());
         dto.setTurretAngle(tankLocation.getTurretAngle());
         dto.setHullAngle(tankLocation.getHullAngle());
-        dto.setTeam(tankLocation.getTeam());
         dto.setHp(tankLocation.getHp());
+        dto.setNickname(tankLocation.getNickname());
+        dto.setTankId(tankLocation.getTankId());
 
         return dto;
     }
@@ -27,8 +28,9 @@ public class TankLocationDtoConverter {
         tankLocation.setLocationX(dto.getLocationX());
         tankLocation.setTurretAngle(dto.getTurretAngle());
         tankLocation.setHullAngle(dto.getHullAngle());
-        tankLocation.setTeam(dto.getTeam());
         tankLocation.setHp(dto.getHp());
+        tankLocation.setNickname(dto.getNickname());
+        tankLocation.setTankId(dto.getTankId());
 
         return tankLocation;
     }

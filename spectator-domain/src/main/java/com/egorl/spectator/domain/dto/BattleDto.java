@@ -7,13 +7,13 @@ import java.util.Objects;
 
 public class BattleDto {
 
-    @JsonProperty("map")
+    @JsonProperty(value = "map", required = true)
     private String map;
 
-    @JsonProperty("battle_id")
+    @JsonProperty(value = "battle_id", required = true)
     private String battleId;
 
-    @JsonProperty("team")
+    @JsonProperty(value = "team", required = true)
     private Integer team;
 
     @JsonProperty("enemies_location")

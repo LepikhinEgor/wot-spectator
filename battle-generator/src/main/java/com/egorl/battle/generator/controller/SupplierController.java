@@ -4,11 +4,9 @@ import com.egorl.battle.generator.domain.BattleCreationRequest;
 import com.egorl.battle.generator.services.BattleGenerator;
 import com.egorl.battle.generator.services.BattleHolder;
 import com.egorl.spectator.domain.dto.BattleDto;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

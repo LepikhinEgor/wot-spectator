@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,6 +28,7 @@ public class BattleGenerator {
         battle.setMap(battleCreation.getMap());
         battle.setBattleId(battleCreation.getId());
         battle.setTanksLocation(generateNewLocations(battleCreation.getTeam()));
+        battle.setTeam(battleCreation.getTeam());
 
         return battle;
     }

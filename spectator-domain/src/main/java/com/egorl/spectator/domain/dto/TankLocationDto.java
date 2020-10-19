@@ -27,15 +27,20 @@ public class TankLocationDto {
     @JsonProperty("turret_angle")
     private Double turretAngle;
 
-    @JsonProperty("team")
-    private Integer team;
-
     public String getTankId() {
         return tankId;
     }
 
     public void setTankId(String tankId) {
         this.tankId = tankId;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public Integer getHp() {
@@ -78,40 +83,23 @@ public class TankLocationDto {
         this.turretAngle = turretAngle;
     }
 
-    public Integer getTeam() {
-        return team;
-    }
-
-    public void setTeam(Integer team) {
-        this.team = team;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TankLocationDto dto = (TankLocationDto) o;
-        return Objects.equals(tankId, dto.tankId) &&
-                Objects.equals(nickname, dto.nickname) &&
-                Objects.equals(hp, dto.hp) &&
-                Objects.equals(locationX, dto.locationX) &&
-                Objects.equals(locationY, dto.locationY) &&
-                Objects.equals(hullAngle, dto.hullAngle) &&
-                Objects.equals(turretAngle, dto.turretAngle) &&
-                Objects.equals(team, dto.team);
+        TankLocationDto that = (TankLocationDto) o;
+        return Objects.equals(tankId, that.tankId) &&
+                Objects.equals(nickname, that.nickname) &&
+                Objects.equals(hp, that.hp) &&
+                Objects.equals(locationX, that.locationX) &&
+                Objects.equals(locationY, that.locationY) &&
+                Objects.equals(hullAngle, that.hullAngle) &&
+                Objects.equals(turretAngle, that.turretAngle);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tankId, nickname, hp, locationX, locationY, hullAngle, turretAngle, team);
+        return Objects.hash(tankId, nickname, hp, locationX, locationY, hullAngle, turretAngle);
     }
 
     @Override
@@ -124,7 +112,6 @@ public class TankLocationDto {
                 ", locationY=" + locationY +
                 ", hullAngle=" + hullAngle +
                 ", turretAngle=" + turretAngle +
-                ", team=" + team +
                 '}';
     }
 }

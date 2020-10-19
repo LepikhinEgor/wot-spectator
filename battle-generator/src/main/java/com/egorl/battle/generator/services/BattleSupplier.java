@@ -38,7 +38,7 @@ public class BattleSupplier {
         this.battleHolder = battleHolder;
     }
 
-    @Scheduled(fixedRate = 500)
+    @Scheduled(fixedRate = 5000)
     public void updateBattles() {
         Collection<BattleDto> activeBattles = battleHolder.getAll();
 

@@ -72,12 +72,12 @@ public class BattleServiceImpl implements BattleService {
     public Mono<Void> updateBattle(BattleDto dto) {
         return Mono.just(battleDtoConverter.fromDto(dto))
                 .flatMap(battle -> Mono.fromCallable(() -> battleRepository.save(battle)))
-                .zipWhen(battle -> tankLocationService.getByBattleAndTeam(battle, getTanksTeam(dto.getTanksLocation())))
-                .doOnNext(tuple ->  {
+                .zipWhen(battle -> tankLocationService.getByBattleAndTeam(battle, dto.getTeam()))
+                .flatMap(tuple ->  {
                     List<TankLocation> actualLocations = getActualTanksLocations(dto);
                     List<TankLocation> updatedLocations = updateTankLocations(tuple.getT2(), actualLocations, tuple.getT1());
 
-                    tankLocationService.updateLocations(updatedLocations);
+                    return tankLocationService.updateLocations(updatedLocations);
                 })
                 .then();
     }
@@ -85,6 +85,7 @@ public class BattleServiceImpl implements BattleService {
     private List<TankLocation> getActualTanksLocations(BattleDto battleDto) {
         return battleDto.getTanksLocation().stream()
                 .map(tankLocationDtoConverter::fromDto)
+                .peek(tankLocation -> tankLocation.setTeam(battleDto.getTeam()))
                 .collect(Collectors.toList());
     }
 
@@ -101,22 +102,6 @@ public class BattleServiceImpl implements BattleService {
 
         return newLocations;
     }
-
-    private Integer getTanksTeam(List<TankLocationDto> tankLocationsDto) {
-        if (tankLocationsDto.size() != 0) {
-            Integer team = tankLocationsDto.get(0).getTeam();
-
-            tankLocationsDto.forEach(dto -> {
-                if (!dto.getTeam().equals(team))
-                    throw new IllegalArgumentException("All tanks must be in same team");
-            });
-
-            return team;
-        }
-
-        throw new IllegalArgumentException("Tanks list must be not empty");
-    }
-
 
     private int getEnemiesTeam(Integer team) {
         if (team == 1)

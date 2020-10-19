@@ -13,7 +13,7 @@ public class TankLocation {
     @SequenceGenerator(name = "location_id_seq_gen", sequenceName = "location_id_seq" , initialValue = 1, allocationSize =1)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "battle_id")
     private Battle battle;
 

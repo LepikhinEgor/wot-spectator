@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  spectator-postgres:
+    image: postgres:12-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: spectator
+      POSTGRES_PASSWORD: spectator
+      POSTGRES_DB: wot_spectator
+    ports:
+    - "5433:5432"
+
+  battle-generator:
+    image: egorl/battle-generator
+    restart: always
+    ports:
+    - "8081:8081"
+    - "4001:4001"
+
+  battle-spy:
+    image: egorl/battle-spy
+    restart: always
+    ports:
+    - "8082:8082"
+    - "4002:4002"
+    environment:
+      DATABASE_URL: jdbc:postgresql://spectator-postgres:5433/wot_spectator
+    depends_on:
+      - spectator-postgres
+
+

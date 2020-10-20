@@ -18,6 +18,8 @@
 
     <properties>
         <java.version>8</java.version>
+        <dockerfile.maven.version>1.4.10</dockerfile.maven.version>
+        <docker.repository>egorl</docker.repository>
     </properties>
 
     <modules>

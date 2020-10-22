@@ -1,9 +1,35 @@
 version: "3"
 
 services:
+  spectator-zookeeper:
+    image: confluentinc/cp-zookeeper:5.3.4
+    ports:
+      - '31000:31000'
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+  spectator-kafka:
+    depends_on:
+      - spectator-zookeeper
+    image: confluentinc/cp-kafka:5.3.4
+    restart: always
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: spectator-zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://spectator-kafka:9093,PLAINTEXT_HOST://localhost:9092
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_CREATE_TOPICS: "battle.info:1:1"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
   spectator-postgres:
     image: postgres:12-alpine
     restart: always
+    expose:
+      - "5433"
     environment:
       POSTGRES_USER: spectator
       POSTGRES_PASSWORD: spectator
@@ -12,11 +38,17 @@ services:
     - "5433:5432"
 
   battle-generator:
+    container_name: battle-generator
     image: egorl/battle-generator
     restart: always
     ports:
     - "8081:8081"
     - "4001:4001"
+    environment:
+      KAFKA_PORT: spectator-kafka:9093
+      JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,address=4001,server=y,suspend=n
+    depends_on:
+      - spectator-kafka
 
   battle-spy:
     image: egorl/battle-spy
@@ -25,8 +57,13 @@ services:
     - "8082:8082"
     - "4002:4002"
     environment:
-      DATABASE_URL: jdbc:postgresql://spectator-postgres:5433/wot_spectator
+      JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,address=4002,server=y,suspend=n
+      DATABASE_URL: jdbc:postgresql://spectator-postgres:5432/wot_spectator
+      DATABASE_USER: spectator
+      DATABASE_PASSWORD: spectator
+      KAFKA_PORT: spectator-kafka:9093
     depends_on:
       - spectator-postgres
+      - spectator-kafka
 
 

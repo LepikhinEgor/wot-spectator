@@ -60,8 +60,8 @@ public class BattleSupplier {
 
             @Override
             public void onSuccess(SendResult<String, BattleDto> stringBattleDtoSendResult) {
-                log.info("Success from kafka");
-                log.info(stringBattleDtoSendResult.toString());
+//                log.info("Success from kafka");
+//                log.info(stringBattleDtoSendResult.toString());
             }
         });
     }

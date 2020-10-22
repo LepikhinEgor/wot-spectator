@@ -2,13 +2,17 @@ version: "3"
 
 services:
   spectator-zookeeper:
+    container_name: spectator-zookeeper
     image: confluentinc/cp-zookeeper:5.3.4
+    restart: always
     ports:
       - '31000:31000'
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
+
   spectator-kafka:
+    container_name: spectator-kafka
     depends_on:
       - spectator-zookeeper
     image: confluentinc/cp-kafka:5.3.4
@@ -26,6 +30,7 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
   spectator-postgres:
+    container_name: spectator-postgres
     image: postgres:12-alpine
     restart: always
     expose:
@@ -34,8 +39,11 @@ services:
       POSTGRES_USER: spectator
       POSTGRES_PASSWORD: spectator
       POSTGRES_DB: wot_spectator
+      PGDATA: /tmp
     ports:
     - "5433:5432"
+    volumes:
+    - ./db_volume:/var/lib/postgresql/data
 
   battle-generator:
     container_name: battle-generator
@@ -47,10 +55,12 @@ services:
     environment:
       KAFKA_PORT: spectator-kafka:9093
       JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,address=4001,server=y,suspend=n
+      SPY_URL: http://battle-spy:8082
     depends_on:
       - spectator-kafka
 
   battle-spy:
+    container_name: battle-spy
     image: egorl/battle-spy
     restart: always
     ports:

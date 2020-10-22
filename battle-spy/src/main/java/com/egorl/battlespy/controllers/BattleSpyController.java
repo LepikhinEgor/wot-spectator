@@ -18,7 +18,7 @@ public class BattleSpyController {
     }
 
     @GetMapping("/battle/info")
-    public Mono<BattleDto> getBattleInfo(@RequestParam(name = "battleId", required = true) String battleId,
+    public Mono<BattleDto> getBattleInfo(@RequestParam(name = "battle_id", required = true) String battleId,
                                          @RequestParam(name = "team", required = true) Integer team) {
         return battleService.getBattle(battleId, team);
     }

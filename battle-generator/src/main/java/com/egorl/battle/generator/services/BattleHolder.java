@@ -9,7 +9,7 @@ import java.util.*;
 @Service
 public class BattleHolder {
 
-    HashMap<BattleKey, BattleDto> activeBattles = new HashMap<>();
+    private HashMap<BattleKey, BattleDto> activeBattles = new HashMap<>();
 
     public void saveBattle(BattleDto battle) {
         BattleKey key = new BattleKey(UUID.fromString(battle.getBattleId()), battle.getTeam());

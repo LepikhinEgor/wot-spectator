@@ -39,11 +39,11 @@ services:
       POSTGRES_USER: spectator
       POSTGRES_PASSWORD: spectator
       POSTGRES_DB: wot_spectator
-      PGDATA: /tmp
+#      PGDATA: /tmp
     ports:
     - "5433:5432"
-    volumes:
-    - ./db_volume:/var/lib/postgresql/data
+#    volumes:
+#    - ./db_volume:/var/lib/postgresql/data
 
   battle-generator:
     container_name: battle-generator

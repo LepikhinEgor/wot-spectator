@@ -38,7 +38,7 @@ public class BattleSupplier {
         this.battleHolder = battleHolder;
     }
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 500)
     public void updateBattles() {
         Collection<BattleDto> activeBattles = battleHolder.getAll();
 
@@ -52,17 +52,6 @@ public class BattleSupplier {
     }
 
     private void sendToKafka(BattleDto battle) {
-        kafkaTemplate.send("battle.info","battle" , battle).addCallback(new ListenableFutureCallback<SendResult<String, BattleDto>>() {
-            @Override
-            public void onFailure(Throwable throwable) {
-                log.error("Error from kafka", throwable);
-            }
-
-            @Override
-            public void onSuccess(SendResult<String, BattleDto> stringBattleDtoSendResult) {
-//                log.info("Success from kafka");
-//                log.info(stringBattleDtoSendResult.toString());
-            }
-        });
+        kafkaTemplate.send("battle.info","battle" , battle);
     }
 }

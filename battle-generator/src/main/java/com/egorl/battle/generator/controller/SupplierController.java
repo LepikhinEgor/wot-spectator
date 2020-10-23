@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class SupplierController {
 
@@ -42,6 +44,25 @@ public class SupplierController {
     public void removeBattle(@RequestParam(name = "battle_id") String battleId) {
         try {
             battleHolder.deleteBattle(battleId);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
+    @GetMapping("/battle/generate/{count}")
+    public void generateBattles(@PathVariable("count") Integer count) {
+        try {
+            List<BattleDto> battles = battleGenerator.generateBattles(count);
+            battleHolder.saveAll(battles);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
+    @GetMapping("/battle/delete/all")
+    public void deleteAllBattles() {
+        try {
+            battleHolder.deleteAll();
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }

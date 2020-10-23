@@ -11,6 +11,14 @@ public class BattleHolder {
 
     private HashMap<BattleKey, BattleDto> activeBattles = new HashMap<>();
 
+    public void deleteAll() {
+        activeBattles.clear();
+    }
+
+    public void saveAll(List<BattleDto> battles) {
+        battles.forEach(this::saveBattle);
+    }
+
     public void saveBattle(BattleDto battle) {
         BattleKey key = new BattleKey(UUID.fromString(battle.getBattleId()), battle.getTeam());
         activeBattles.put(key, battle);

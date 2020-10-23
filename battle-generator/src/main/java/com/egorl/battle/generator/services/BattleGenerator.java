@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +32,28 @@ public class BattleGenerator {
         battle.setTeam(battleCreation.getTeam());
 
         return battle;
+    }
+
+    public List<BattleDto> generateBattles(Integer count) {
+        List<BattleDto> generatedBattles = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            String uuid = UUID.randomUUID().toString();
+
+            BattleCreationRequest firstTeam = new BattleCreationRequest();
+            firstTeam.setId(uuid);
+            firstTeam.setMap("Cliff");
+            firstTeam.setTeam(1);
+
+            BattleCreationRequest secondTeam = new BattleCreationRequest();
+            secondTeam.setId(uuid);
+            secondTeam.setMap("Cliff");
+            secondTeam.setTeam(2);
+
+            generatedBattles.add(generateBattle(firstTeam));
+            generatedBattles.add(generateBattle(secondTeam));
+        }
+
+        return generatedBattles;
     }
 
     public BattleDto updateBattle(BattleDto oldBattleDto) {

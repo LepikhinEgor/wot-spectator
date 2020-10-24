@@ -1,11 +1,14 @@
 package com.egorl.spectator.domain.entities;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tank_location")
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class TankLocation {
 
     @Id
@@ -173,3 +176,4 @@ public class TankLocation {
                 '}';
     }
 }
+

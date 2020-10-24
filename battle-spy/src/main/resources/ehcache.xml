@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://www.ehcache.org/ehcache.xsd">
+
+    <cache name="com.egorl.spectator.domain.entities.TankLocation"
+           eternal="false"
+           overflowToDisk="false"
+           maxEntriesLocalHeap="3000"
+           timeToIdleSeconds="60">
+    </cache>
+    <cache name="com.egorl.spectator.domain.entities.Battle"
+           eternal="false"
+           overflowToDisk="false"
+           maxEntriesLocalHeap="100"
+           timeToIdleSeconds="60">
+    </cache>
+</ehcache>

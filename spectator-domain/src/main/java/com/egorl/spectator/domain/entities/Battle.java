@@ -1,5 +1,7 @@
 package com.egorl.spectator.domain.entities;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,6 +11,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "battle")
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Battle {
 
     @Id
